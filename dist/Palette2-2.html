@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-2 Google Workspace（業務効率化） | Gemini講座</title>
+    <style>
+        .elearning-container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 32px 24px 24px 24px; }
+        .elearning-header { text-align: center; margin-bottom: 18px; }
+        .elearning-title { font-size: 2.2rem; font-weight: 800; color: #3a2e6c; letter-spacing: 0.02em; }
+        .elearning-narration { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 24px; }
+        .elearning-video { margin-bottom: 32px; }
+        .video-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+        .elearning-content { margin-bottom: 32px; }
+        .elearning-prompt { margin-bottom: 32px; }
+        .prompt-box {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .prompt-label { font-weight: 600; margin-bottom: 8px; color: #7b2ff2; }
+        .prompt-textarea { width: 100%; min-height: 60px; font-size: 1rem; border: none; background: #f7fafc; resize: none; margin-bottom: 10px; border-radius: 8px; padding: 8px; }
+        .copy-btn {
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        .elearning-nav { display: flex; justify-content: space-between; margin-bottom: 32px; }
+        .nav-btn { background: #ece9f7; color: #7b2ff2; border-radius: 8px; padding: 10px 22px; font-weight: 700; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(123,47,242,0.08); transition: background 0.2s, color 0.2s; }
+        .nav-btn:hover { background: #7b2ff2; color: #fff; }
+        .elearning-launch { text-align: center; }
+        .launch-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 24px;
+            padding: 14px 36px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transition: background 0.2s;
+        }
+        .launch-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        @media (max-width: 600px) { .elearning-container { padding: 10px 2vw; } .elearning-title { font-size: 1.3rem; } .video-frame iframe { height: 200px; } }
+    </style>
+</head>
+<body>
+    <div class="elearning-container">
+        <nav class="breadcrumb" style="margin-bottom: 18px; font-size: 0.98em;">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette2.html">Palette2</a> &gt; 
+            <span>Palette2-2</span>
+        </nav>
+        <header class="elearning-header">
+            <h1 class="elearning-title">2-2 Google Workspace（業務効率化）</h1>
+        </header>
+        <section class="elearning-narration">
+            <p>Google Workspaceによる業務効率化の実例と主な機能を学びましょう。</p>
+        </section>
+        <section class="elearning-content">
+            <div class="subsection">
+                <h3 class="subsection-title">2-2 Google Workspace（業務効率化）</h3>
+                <p class="content-text">
+📖 解説<br>
+Google Workspaceは、Googleアカウントと連携して業務を効率化する統合ツール群です。<br>
+日々の仕事の「時間がかかるタスク」をAIがサポートしてくれます。<br>
+デスクワークメインで会社の同僚などと共同作業する方以外はおすすめしません。
+                </p>
+                <p class="content-text">
+🧰 主な機能一覧<br>
+Gmail連携：メールの自動下書き生成、返信サジェスト<br>
+Google Meet：会議の自動要約・議事録作成<br>
+Google Docs：リアルタイム共同編集、文章自動生成<br>
+Google Drive：2TBのストレージで資料を一元管理<br>
+📌 実用例：<br>
+・会議の議事録をその場で自動作成し、Docsに保存<br>
+・メール文面を指示だけで生成 → そのまま送信
+                </p>
+                <p class="content-text">
+💡活用ポイント<br>
+・Google Workspace利用者にはとくに親和性が高く、学習コストゼロで導入可能<br>
+・プライベートでも、メモやアイデア整理に活用できます
+                </p>
+            </div>
+        </section>
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>Google Workspaceの主な機能と活用例をまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.prompt-textarea').value)">コピー</button>
+            </div>
+        </section>
+        <section class="elearning-launch">
+            <a href="https://x.gd/RCe0A" target="_blank" class="launch-btn">Google Workspaceの公式サイトを開く</a>
+        </section>
+        <section class="elearning-nav">
+            <a class="nav-btn" href="Palette2-1.html">&laquo; 前のページ</a>
+            <a class="nav-btn" href="Palette2-3.html">次のページ &raquo;</a>
+        </section>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Palette｜あなたの可能性を広げる、13のツールたち</title>
+    <meta name="description" content="あなたの可能性を広げる13のAIツールを完全マスター。創造性と効率性を最大化するAI Paletteで、新しい未来を描きましょう。">
+    
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #111111;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #444444;
+            margin-bottom: 16px;
+        }
+
+        .small-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .caption {
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-hero {
+            padding: 120px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('../assets/images/生成画像/header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #111111;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1,
+        .hero p {
+            color: #111111;
+        }
+
+        .hero h1 {
+            background: linear-gradient(90deg, #00eaff, #7f5fff, #ff4ecd, #ffb86c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.3s forwards;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin: 8px;
+        }
+
+        .btn-primary {
+            background: #222;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(34,34,34,0.08);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #222;
+            border: 2px solid #222;
+        }
+
+        .btn-secondary:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        /* Value Proposition Section */
+        .value-props {
+            background: url('../assets/images/生成画像/0.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        .value-card:hover {
+            transform: scale(1.02);
+        }
+
+        .value-icon-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-size: 28px;
+            font-weight: bold;
+            overflow: hidden; /* For image clipping */
+        }
+
+        .value-icon-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Narrative Section */
+        .narrative {
+            background: #fafbfc;
+            text-align: left;
+        }
+
+        .narrative-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .narrative-content {
+            max-width: 800px;
+        }
+
+        .narrative p {
+            font-size: 20px;
+            color: #111111;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        /* Learning Flow Section */
+        .learning-flow {
+            background: url('../assets/images/生成画像/フッダー2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .flow-card {
+            background: #fff;
+            color: #111111;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .flow-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .flow-icon-placeholder {
+            font-size: 48px;
+            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: #222;
+        }
+
+        .flow-card.card-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .flow-card.card-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: #fafbfc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('../assets/images/生成画像/image (5).png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .faq .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-question.active {
+            background: #222;
+            color: #fff;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        /* Courses Section */
+        .courses {
+            background: #FFFFFF;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .course-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .course-description {
+            font-size: 16px;
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .course-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #222;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            align-self: flex-end;
+        }
+
+        .course-link:hover {
+            box-shadow: 0 5px 15px rgba(34,34,34,0.08);
+        }
+
+        /* Closing Section */
+        .closing {
+            background: #fff;
+            color: #111111;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-hero {
+                padding: 80px 0;
+            }
+
+            .value-grid,
+            .flow-grid,
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* Accessibility */
+        .btn:focus,
+        .faq-question:focus {
+            outline: 2px solid #007AFF;
+            outline-offset: 2px;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .neon-border {
+            position: relative;
+            z-index: 1;
+            overflow: visible;
+        }
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 2;
+            padding: 2px;
+            background: linear-gradient(90deg, #00eaff, #7f5fff, #ff4ecd, #ffb86c, #00eaff);
+            -webkit-mask:
+              linear-gradient(#fff 0 0) content-box, 
+              linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            mask:
+              linear-gradient(#fff 0 0) content-box, 
+              linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            box-shadow: 0 0 8px 2px #00eaff80, 0 0 16px 4px #ff4ecd40;
+            opacity: 1;
+            filter: blur(0.3px) brightness(1.1);
+        }
+        .value-card, .flow-card, .course-card, .btn-primary, .course-link {
+            box-shadow: 0 0 16px 2px #00eaff80, 0 0 32px 4px #00bfff40;
+        }
+        .value-card, .flow-card, .course-card {
+            border-radius: 16px;
+        }
+        .value-card.neon-border, .flow-card.neon-border, .course-card.neon-border {
+            border: 2px solid transparent;
+        }
+        .btn-primary.neon-border, .course-link.neon-border {
+            border-radius: 8px;
+            border: 2px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero section-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI Palette</h1>
+                <p>あなたの可能性を広げる、13のツールたち</p>
+                <p>創造性と効率性を最大化するAIツールで、新しい未来を描きましょう</p>
+                <a href="#courses" class="btn btn-primary neon-border">AI Paletteを始める</a>
+                <a href="#about" class="btn btn-secondary">カリキュラムを詳しく見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ヘッダー内にヘッダー.jpg追加 -->
+    <!-- ヘッダー直下にヘッダー.gif追加 -->
+
+    <!-- Value Proposition Section -->
+    <section class="value-props section" id="about">
+        <div class="container">
+            <h2>AIで、創造性はもっと自由に。</h2>
+            <div class="value-grid">
+                <div class="value-card neon-border">
+                    <div class="value-icon-placeholder">
+                        <img src="../assets/images/生成画像/image (2).png" alt="書く">
+                    </div>
+                    <h3>書く</h3>
+                    <p>ChatGPTを司令塔として、文章作成から企画立案まで、あなたの創造性を加速させます。</p>
+                </div>
+                <div class="value-card neon-border">
+                    <div class="value-icon-placeholder">
+                        <img src="../assets/images/生成画像/image (1).png" alt="創る">
+                    </div>
+                    <h3>創る</h3>
+                    <p>画像生成、動画制作、音楽作成まで、AIツールを組み合わせて創造性を最大化します。</p>
+                </div>
+                <div class="value-card neon-border">
+                    <div class="value-icon-placeholder">
+                        <img src="../assets/images/生成画像/image (3).png" alt="調べる">
+                    </div>
+                    <h3>調べる</h3>
+                    <p>PerplexityやNotebookLMで、情報収集と分析を効率化し、洞察力を高めます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Narrative Section -->
+    <section class="narrative section">
+        <div class="container">
+            <div class="narrative-grid">
+                <div class="narrative-content">
+                    <p>「AIは便利そう。でも、どう使えばいいんだろう？」</p>
+                    <p>「試したけれど、なぜか続かない…」</p>
+                    <p>そんな疑問や戸惑いも、自然なことです。</p>
+                </div>
+                <div class="narrative-image">
+                    <img src="../assets/images/生成画像/image (4).png" alt="AIとの対話" style="width: 100%; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Flow Section -->
+    <section class="learning-flow section">
+        <div class="container">
+            <h2>学びは、あなたのペースで。</h2>
+            <div class="flow-grid">
+                <div class="flow-card neon-border">
+                    <div class="flow-icon-placeholder">①</div>
+                    <h3>触れる</h3>
+                    <p>まずは話すことから。AIとの自然な対話を通じて、可能性を体感します。</p>
+                </div>
+                <div class="flow-card neon-border">
+                    <div class="flow-icon-placeholder">②</div>
+                    <h3>理解する</h3>
+                    <p>各ツールの特性と活用法を深く理解し、最適な組み合わせを学びます。</p>
+                </div>
+                <div class="flow-card neon-border">
+                    <div class="flow-icon-placeholder">③</div>
+                    <h3>創る</h3>
+                    <p>実践的なプロジェクトを通じて、あなただけのAI活用ワークフローを構築します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq section">
+        <div class="container">
+            <h2>よくある質問</h2>
+            <div class="faq-item">
+                <div class="faq-question">初心者でも大丈夫ですか？</div>
+                <div class="faq-answer">はい、どなたでも安心して始められます。基礎から応用まで、段階的に学べるカリキュラムになっています。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">どのようなAIツールを学べますか？</div>
+                <div class="faq-answer">ChatGPT、Gemini、Claude、Perplexity、NotebookLM、Gamma、Canva、Suno、KlingAI、ImageFXなど、13の最新AIツールを網羅しています。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">学習時間はどのくらい必要ですか？</div>
+                <div class="faq-answer">1日30分から始められます。忙しい方でも無理なく続けられるよう、柔軟な学習スケジュールを提案しています。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">実践的なスキルが身につきますか？</div>
+                <div class="faq-answer">理論だけでなく、実際のプロジェクトを通じて実践的なスキルを習得できます。すぐに仕事や趣味に活用できる内容です。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses section" id="courses">
+        <div class="container">
+            <h2>13のAIツールを完全マスター</h2>
+            <div class="course-grid">
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/GPT.png" alt="ChatGPT" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">ChatGPT 〜すべてのAIの司令塔〜</h3>
+                    <p class="course-description">プロンプト設計、カスタマイズ、パーソナライズ、画像生成まで、実践的な活用方法を一気に解説します。</p>
+                    <a href="Palette1.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Gemini.png" alt="Gemini" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Geminiの使い方と注意点</h3>
+                    <p class="course-description">Googleの生成AI『Gemini』の特徴と使い方を学び、業務効率化の実例や映像生成まで幅広くご紹介します。</p>
+                    <a href="Palette2.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Claude.png" alt="Claude" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Claude（可視化に強いAI）</h3>
+                    <p class="course-description">インフォグラフィックや図解など"見える化"が得意な生成AI。開発支援や図解資料の作成に役立つ機能を紹介します。</p>
+                    <a href="Palette3.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/パープレキシティ.jpg" alt="Perplexity" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Perplexity（最強のリサーチ特化型AI）</h3>
+                    <p class="course-description">調べ物や比較検討に特化したAI。調査・検索に強いこのツールを使って、情報収集力を劇的に高める方法をお伝えします。</p>
+                    <a href="Palette4.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Notebook LM.png" alt="NotebookLM" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">NotebookLM（RAG的AI）</h3>
+                    <p class="course-description">自分専用の情報ベースを構築できるRAG系AI。マニュアル作成やナレッジ共有、マーケ戦略の設計まで学びます。</p>
+                    <a href="Palette5.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Canva.jpeg" alt="Gamma" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Gamma（プレゼン特化ツール）</h3>
+                    <p class="course-description">ドキュメントを一瞬でスライド化できるプレゼン特化型ツール。営業資料や社内報告など、即席プレゼンをスムーズにこなす秘訣をお伝えします。</p>
+                    <a href="Palette6.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Canva.jpeg" alt="Canva" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Canva（スライド＆SNS投稿）</h3>
+                    <p class="course-description">CanvaのGPT連携でスライドやSNS投稿を一括生成する方法を紹介。マーケティングや発信を効率化するポイントが満載です。</p>
+                    <a href="Palette7.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/suno-ai-icon.png" alt="Suno" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Suno（BGM生成）</h3>
+                    <p class="course-description">誰でも簡単に作業用BGMや動画用の音楽を作成できます。AIが作る"音の世界"をぜひ体験してみましょう。</p>
+                    <a href="Palette8.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/kling-ai.png" alt="KlingAI" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">KlingAI（動画生成）</h3>
+                    <p class="course-description">高品質な動画を自動で生成できる注目のAI。動画制作のハードルを大きく下げる使い方を解説します。</p>
+                    <a href="Palette9.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/AI STUDIO.blob" alt="ImageFX" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">ImageFX（画像生成）</h3>
+                    <p class="course-description">魅力的なビジュアルを手軽に作成できます。画像生成のポイントと実践例をチェックしてみましょう。</p>
+                    <a href="Palette10.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/whisk.png" alt="AIエージェント系" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">AIエージェント系</h3>
+                    <p class="course-description">AIエージェントを使った業務の自動化について学びます。ルーティンをAIに任せて、本来の創造的な仕事に集中しましょう。</p>
+                    <a href="Palette11.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Kindle.png" alt="書籍制作 × ChatGPT" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">書籍制作 × ChatGPT</h3>
+                    <p class="course-description">ChatGPTとWordを使えば、誰でも書籍を作って出版することが可能です。ゼロからKindle出版までの流れを丁寧に解説します。</p>
+                    <a href="Palette12.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/veo3 .webp" alt="動画コンテンツ制作ワークフロー" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">動画コンテンツ制作ワークフロー</h3>
+                    <p class="course-description">ChatGPTを中心に複数の生成AIを連携させた動画制作のワークフローを紹介。構成・台本・音声・BGM・動画編集まで、すべての工程をAIでカバーします。</p>
+                    <a href="Palette13.html" class="course-link">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="closing section">
+        <div class="container">
+            <h2>さあ、あなたの可能性を解き放とう。</h2>
+            <a href="#courses" class="btn btn-primary neon-border">無料で体験する</a>
+            <a href="#about" class="btn btn-secondary">全コースを見る</a>
+        </div>
+    </section>
+
+    <!-- フッター直前にフッダー.jpg追加 -->
+    <img src="../assets/images/生成画像/フッダー.jpg" alt="フッダー画像" style="width:100%;height:auto;display:block;">
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.value-card, .flow-card, .course-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Intersection Observer for .flow-card animation
+        const flowCards = document.querySelectorAll('.flow-card');
+        flowCards.forEach(card => card.classList.add('card-animate'));
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.2 });
+        flowCards.forEach(card => flowObserver.observe(card));
+    </script>
+</body>
+</html> 

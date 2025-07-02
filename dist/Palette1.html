@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース1: ChatGPT 〜すべてのAIの司令塔〜 | AIマスター講座</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .course-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .course-icon {
+            width: 64px; height: 64px; border-radius: 16px; object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .course-title { font-size: 2.5rem; font-weight: 700; color: #2d3748; margin-bottom: 10px; }
+        .course-subtitle { font-size: 1.2rem; color: #718096; margin-bottom: 20px; }
+        .course-description { font-size: 1.1rem; color: #4a5568; line-height: 1.8; }
+        .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; }
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: #fff;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        .section { margin-bottom: 40px; }
+        .section-title {
+            font-size: 1.8rem; font-weight: 600; color: #2d3748; margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+        .lesson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        .lesson-card {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 2px 8px rgba(123,47,242,0.06);
+        }
+        .lesson-title { font-size: 1.15rem; font-weight: 700; color: #7b2ff2; margin-bottom: 10px; }
+        .lesson-desc { font-size: 1rem; color: #444; margin-bottom: 18px; }
+        .lesson-link-btn {
+            background: #fff;
+            color: #7b2ff2;
+            border: 2px solid #7b2ff2;
+            border-radius: 8px;
+            padding: 8px 22px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+            box-shadow: none;
+        }
+        .lesson-link-btn:hover {
+            background: #f7fafc;
+            color: #7b2ff2;
+            border-color: #f953c6;
+            filter: none;
+        }
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+        .info-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(123,47,242,0.06);
+        }
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .course-header { flex-direction: column; text-align: center; }
+            .course-title { font-size: 2rem; }
+            .main-content, .sidebar { padding: 20px; }
+            .lesson-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="course-header">
+                <img src="assets/images/アイコン/AI STUDIO.blob" alt="ChatGPT" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; border-radius: 16px; margin-right: 16px;">
+                <div>
+                    <h1 class="course-title">コース1: ChatGPT 〜すべてのAIの司令塔〜</h1>
+                    <p class="course-subtitle">AI活用の基礎から応用までを体系的に学ぶ</p>
+                </div>
+            </div>
+            <p class="course-description">
+                ChatGPTは、あらゆるAI活用の基礎となる「司令塔」的な存在です。
+                このコースでは、ChatGPTの基本操作から応用テクニック、プロンプト設計、画像生成やプロジェクト管理まで、
+                実践的なスキルを体系的に習得できます。
+            </p>
+        </div>
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">📚 レッスン一覧</h2>
+                    <div class="lesson-grid">
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-1 はじめに知っておくべき注意点</div>
+                            <div class="lesson-desc">ChatGPTを安全・効果的に使うための基本的な注意点を学びます。</div>
+                            <a href="Palette1-1.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-2 モデルの違いと選び方</div>
+                            <div class="lesson-desc">各モデル（GPT-3.5/4/4 Turboなど）の特徴と選び方を解説します。</div>
+                            <a href="Palette1-2.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-3 パーソナライズ機能</div>
+                            <div class="lesson-desc">ChatGPTを自分専用にカスタマイズする方法を学びます。</div>
+                            <a href="Palette1-3.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-4 主な機能紹介</div>
+                            <div class="lesson-desc">ChatGPTの主要な機能（テキスト生成・翻訳・要約など）を網羅的に紹介。</div>
+                            <a href="Palette1-4.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-5 プロンプト学習：基本編</div>
+                            <div class="lesson-desc">効果的なプロンプト作成の基本を学びます。</div>
+                            <a href="Palette1-5.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-6 プロンプト学習：応用編1</div>
+                            <div class="lesson-desc">高度なプロンプトテクニック（段階的指示・条件設定など）を学びます。</div>
+                            <a href="Palette1-6.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-7 プロンプト学習：応用編2</div>
+                            <div class="lesson-desc">専門的な用途別のプロンプト最適化手法を解説します。</div>
+                            <a href="Palette1-7.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-8 プロンプト学習：応用編3</div>
+                            <div class="lesson-desc">上級プロンプト技術（Few-shot, Chain-of-Thought等）を学びます。</div>
+                            <a href="Palette1-8.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-9 プロジェクト機能</div>
+                            <div class="lesson-desc">ChatGPTのプロジェクト機能を活用した効率的な作業管理方法を学びます。</div>
+                            <a href="Palette1-9.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-10 GPTs（カスタムGPT）</div>
+                            <div class="lesson-desc">自分専用のカスタムGPTを作成する方法を学びます。</div>
+                            <a href="Palette1-10.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-11 画像生成</div>
+                            <div class="lesson-desc">ChatGPTの画像生成機能（DALL-E）の活用方法を学びます。</div>
+                            <a href="Palette1-11.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-12 プロンプトの整理法</div>
+                            <div class="lesson-desc">プロンプトの整理・管理・テンプレート化の方法を学びます。</div>
+                            <a href="Palette1-12.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">1-13 チャプロ（ChatPrompt）</div>
+                            <div class="lesson-desc">プロンプト管理ツール「ChatPrompt」の活用方法を学びます。</div>
+                            <a href="Palette1-13.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>🚀 ChatGPTコースのポイント</h3>
+                    <p>ChatGPTはAI活用の基礎から応用まで幅広く対応できる「司令塔」的AIです。<br>
+                    本コースで、プロンプト設計・画像生成・プロジェクト管理など、実践的なスキルを身につけましょう。</p>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="navigation">
+                    <h3>📖 コース一覧</h3>
+                    <ul class="nav-list">
+                        <li><a href="Palette1.html">1. ChatGPT</a></li>
+                        <li><a href="Palette2.html">2. Gemini</a></li>
+                        <li><a href="Palette3.html">3. Claude</a></li>
+                        <li><a href="Palette4.html">4. Perplexity</a></li>
+                        <li><a href="Palette5.html">5. NotebookLM</a></li>
+                        <li><a href="Palette6.html">6. Gamma</a></li>
+                        <li><a href="Palette7.html">7. Canva</a></li>
+                        <li><a href="Palette8.html">8. Suno</a></li>
+                        <li><a href="Palette9.html">9. KlingAI</a></li>
+                        <li><a href="Palette10.html">10. ImageFX</a></li>
+                        <li><a href="Palette11.html">11. AIエージェント</a></li>
+                        <li><a href="Palette12.html">12. 書籍制作</a></li>
+                        <li><a href="Palette13.html">13. 動画制作</a></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 学習目標</h3>
+                    <p>ChatGPTの活用法を基礎から応用まで体系的に習得します。</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏱️ 学習時間</h3>
+                    <p>約1-2時間で基本から応用までマスターできます。</p>
+                </div>
+                <div class="info-card">
+                    <h3>📈 習得スキル</h3>
+                    <p>プロンプト設計、画像生成、プロジェクト管理、AI活用</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="Palette.html" class="back-button">🏠 メインページに戻る</a>
+        </div>
+    </div>
+</body>
+</html> 
