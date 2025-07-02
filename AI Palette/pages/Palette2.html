@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース2: Geminiの使い方と注意点 | AIマスター講座</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #fff3b0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .lesson-card {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 2px 8px rgba(123,47,242,0.06);
+        }
+
+        .lesson-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #7b2ff2;
+            margin-bottom: 10px;
+        }
+
+        .lesson-desc {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        .lesson-link-btn {
+            background: #fff;
+            color: #7b2ff2;
+            border: 2px solid #7b2ff2;
+            border-radius: 8px;
+            padding: 8px 22px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+            box-shadow: none;
+        }
+
+        .lesson-link-btn:hover {
+            background: #f7fafc;
+            color: #7b2ff2;
+            border-color: #f953c6;
+            filter: none;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .navigation {
+            margin-bottom: 30px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 12px 15px;
+            background: #f7fafc;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            .main-content, .sidebar { padding: 20px; }
+            .lesson-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="course-header">
+                <img src="../assets/images/アイコン/Gemini.png" alt="Gemini" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; border-radius: 16px; margin-right: 16px;">
+                <div>
+                    <h1 class="course-title">コース2: Geminiの使い方と注意点</h1>
+                    <p class="course-subtitle">Googleの生成AI『Gemini』の特徴と使い方を学ぶ</p>
+                </div>
+            </div>
+            <p class="course-description">
+                ここではGoogleの生成AI『Gemini』の特徴と使い方を学びます。
+            
+                業務効率化の実例や、映像生成まで幅広くご紹介します。
+            </p>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">📚 レッスン一覧</h2>
+                    <div class="lesson-grid">
+                        <div class="lesson-card">
+                            <div class="lesson-title">2-1 Geminiの基本と組み合わせ活用</div>
+                            <div class="lesson-desc">Geminiの特徴と他AI・Googleサービスとの連携メリットを学びます。</div>
+                            <a href="Palette2-1.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">2-2 Gemini Workspace（業務効率化）</div>
+                            <div class="lesson-desc">Gemini Workspaceによる業務効率化の実例と主な機能を解説します。</div>
+                            <a href="Palette2-2.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">2-3 AI Studio（無料で最強クラス）</div>
+                            <div class="lesson-desc">AI Studioの特徴・活用ポイント・ウィークポイントを紹介します。</div>
+                            <a href="Palette2-3.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="lesson-title">2-4 Whisk（画像・動画生成）</div>
+                            <div class="lesson-desc">Whiskによる画像・動画生成の特徴と活用場面を学びます。</div>
+                            <a href="Palette2-4.html" class="lesson-link-btn">学習ページへ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🚀 Geminiの最大の強み</h3>
+                    <p>Geminiは単独で使うよりも、ChatGPTやClaudeと組み合わせることで真の力を発揮します。
+                    リアルタイム情報へのアクセスとマルチモーダル機能を活用し、
+                    他のAIツールではできない高度なタスクを実現できます。</p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="navigation">
+                    <h3>📖 コース一覧</h3>
+                    <ul class="nav-list">
+                        <li><a href="Palette1.html">1. ChatGPT</a></li>
+                        <li><a href="Palette2.html">2. Gemini</a></li>
+                        <li><a href="Palette3.html">3. Claude</a></li>
+                        <li><a href="Palette4.html">4. Perplexity</a></li>
+                        <li><a href="Palette5.html">5. NotebookLM</a></li>
+                        <li><a href="Palette6.html">6. Gamma</a></li>
+                        <li><a href="Palette7.html">7. Canva</a></li>
+                        <li><a href="Palette8.html">8. Suno</a></li>
+                        <li><a href="Palette9.html">9. KlingAI</a></li>
+                        <li><a href="Palette10.html">10. ImageFX</a></li>
+                        <li><a href="Palette11.html">11. AIエージェント</a></li>
+                        <li><a href="Palette12.html">12. 書籍制作</a></li>
+                        <li><a href="Palette13.html">13. 動画制作</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🎯 学習目標</h3>
+                    <p>Geminiの特徴を理解し、他のAIツールとの組み合わせで最大の効果を引き出すスキルを習得します。</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>⏱️ 学習時間</h3>
+                    <p>約1-2時間で基本から応用までマスターできます。</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📈 習得スキル</h3>
+                    <p>Gemini活用、Workspace連携、AI Studio操作、マルチモーダル生成</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="Palette.html" class="back-button">🏠 メインページに戻る</a>
+        </div>
+    </div>
+
+    <!-- ここにPalette.htmlのコースカードセクションを挿入 -->
+    <section class="courses section" id="courses">
+        <div class="container">
+            <h2>13のAIツールを完全マスター</h2>
+            <div class="course-grid">
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/GPT.png" alt="ChatGPT" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">ChatGPT 〜すべてのAIの司令塔〜</h3>
+                    <p class="course-description">プロンプト設計、カスタマイズ、パーソナライズ、画像生成まで、実践的な活用方法を一気に解説します。</p>
+                    <a href="Palette1.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Gemini.png" alt="Gemini" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Geminiの使い方と注意点</h3>
+                    <p class="course-description">Googleの生成AI『Gemini』の特徴と使い方を学び、業務効率化の実例や映像生成まで幅広くご紹介します。</p>
+                    <a href="Palette2.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Claude.png" alt="Claude" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Claude（可視化に強いAI）</h3>
+                    <p class="course-description">インフォグラフィックや図解など"見える化"が得意な生成AI。開発支援や図解資料の作成に役立つ機能を紹介します。</p>
+                    <a href="Palette3.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/パープレキシティ.jpg" alt="Perplexity" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Perplexity（最強のリサーチ特化型AI）</h3>
+                    <p class="course-description">調べ物や比較検討に特化したAI。調査・検索に強いこのツールを使って、情報収集力を劇的に高める方法をお伝えします。</p>
+                    <a href="Palette4.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Notebook LM.png" alt="NotebookLM" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">NotebookLM（RAG的AI）</h3>
+                    <p class="course-description">自分専用の情報ベースを構築できるRAG系AI。マニュアル作成やナレッジ共有、マーケ戦略の設計まで学びます。</p>
+                    <a href="Palette5.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Canva.jpeg" alt="Gamma" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Gamma（プレゼン特化ツール）</h3>
+                    <p class="course-description">ドキュメントを一瞬でスライド化できるプレゼン特化型ツール。営業資料や社内報告など、即席プレゼンをスムーズにこなす秘訣をお伝えします。</p>
+                    <a href="Palette6.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Canva.jpeg" alt="Canva" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Canva（スライド＆SNS投稿）</h3>
+                    <p class="course-description">CanvaのGPT連携でスライドやSNS投稿を一括生成する方法を紹介。マーケティングや発信を効率化するポイントが満載です。</p>
+                    <a href="Palette7.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/suno-ai-icon.png" alt="Suno" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">Suno（BGM生成）</h3>
+                    <p class="course-description">誰でも簡単に作業用BGMや動画用の音楽を作成できます。AIが作る"音の世界"をぜひ体験してみましょう。</p>
+                    <a href="Palette8.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/kling-ai.png" alt="KlingAI" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">KlingAI（動画生成）</h3>
+                    <p class="course-description">高品質な動画を自動で生成できる注目のAI。動画制作のハードルを大きく下げる使い方を解説します。</p>
+                    <a href="Palette9.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/AI STUDIO.blob" alt="ImageFX" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">ImageFX（画像生成）</h3>
+                    <p class="course-description">魅力的なビジュアルを手軽に作成できます。画像生成のポイントと実践例をチェックしてみましょう。</p>
+                    <a href="Palette10.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/whisk.png" alt="AIエージェント系" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">AIエージェント系</h3>
+                    <p class="course-description">AIエージェントを使った業務の自動化について学びます。ルーティンをAIに任せて、本来の創造的な仕事に集中しましょう。</p>
+                    <a href="Palette11.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/Kindle.png" alt="書籍制作 × ChatGPT" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">書籍制作 × ChatGPT</h3>
+                    <p class="course-description">ChatGPTとWordを使えば、誰でも書籍を作って出版することが可能です。ゼロからKindle出版までの流れを丁寧に解説します。</p>
+                    <a href="Palette12.html" class="course-link">詳細を見る</a>
+                </div>
+                <div class="course-card neon-border">
+                    <img src="../assets/images/アイコン/veo3 .webp" alt="動画コンテンツ制作ワークフロー" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 20px; border-radius: 12px;">
+                    <h3 class="course-title">動画コンテンツ制作ワークフロー</h3>
+                    <p class="course-description">ChatGPTを中心に複数の生成AIを連携させた動画制作のワークフローを紹介。構成・台本・音声・BGM・動画編集まで、すべての工程をAIでカバーします。</p>
+                    <a href="Palette13.html" class="course-link">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Palette.htmlのコースカードセクションここまで -->
+</body>
+</html> 

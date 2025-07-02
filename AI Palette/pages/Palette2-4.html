@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-4 Whisk（画像・動画生成） | Gemini講座</title>
+    <style>
+        .elearning-container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 32px 24px 24px 24px; }
+        .elearning-header { text-align: center; margin-bottom: 18px; }
+        .elearning-title { font-size: 2.2rem; font-weight: 800; color: #3a2e6c; letter-spacing: 0.02em; }
+        .elearning-narration { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 24px; }
+        .elearning-video { margin-bottom: 32px; }
+        .video-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+        .elearning-content { margin-bottom: 32px; }
+        .elearning-prompt { margin-bottom: 32px; }
+        .prompt-box {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .prompt-label { font-weight: 600; margin-bottom: 8px; color: #7b2ff2; }
+        .prompt-textarea { width: 100%; min-height: 60px; font-size: 1rem; border: none; background: #f7fafc; resize: none; margin-bottom: 10px; border-radius: 8px; padding: 8px; }
+        .copy-btn {
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        .elearning-nav { display: flex; justify-content: space-between; margin-bottom: 32px; }
+        .nav-btn { background: #ece9f7; color: #7b2ff2; border-radius: 8px; padding: 10px 22px; font-weight: 700; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(123,47,242,0.08); transition: background 0.2s, color 0.2s; }
+        .nav-btn:hover { background: #7b2ff2; color: #fff; }
+        .elearning-launch { text-align: center; }
+        .launch-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 24px;
+            padding: 14px 36px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transition: background 0.2s;
+        }
+        .launch-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        @media (max-width: 600px) { .elearning-container { padding: 10px 2vw; } .elearning-title { font-size: 1.3rem; } .video-frame iframe { height: 200px; } }
+    </style>
+</head>
+<body>
+    <div class="elearning-container">
+        <nav class="breadcrumb" style="margin-bottom: 18px; font-size: 0.98em;">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette2.html">Palette2</a> &gt; 
+            <span>Palette2-4</span>
+        </nav>
+        <header class="elearning-header">
+            <h1 class="elearning-title">2-4 Whisk（画像・動画生成）</h1>
+        </header>
+        <section class="elearning-narration">
+            <p>Whiskによる画像・動画生成の特徴と活用場面を学びましょう。</p>
+        </section>
+        <section class="elearning-content">
+            <div class="subsection">
+                <h3 class="subsection-title">2-4 Whisk（画像・動画生成）</h3>
+                <p class="content-text">
+📖 解説<br>
+WhiskはGeminiに統合された画像・動画生成エンジンです。<br>
+特に注目されているのが、「セリフ付きアニメ音声」の自動生成機能です。
+                </p>
+                <p class="content-text">
+🎥 主な機能<br>
+・アバターが喋る動画を生成<br>
+・セリフ入力だけでキャラが動く・喋る<br>
+・シナリオから映像素材を自動で生成するテンプレもあり
+                </p>
+                <p class="content-text">
+💡活用場面：<br>
+・SNS用ショート動画<br>
+・YouTubeのナレーション付き動画<br>
+・自社サービス紹介のPRムービー
+                </p>
+            </div>
+        </section>
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>Whiskの主な機能と活用場面をまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.prompt-textarea').value)">コピー</button>
+            </div>
+        </section>
+        <section class="elearning-launch">
+            <a href="https://gemini.google.com/" target="_blank" class="launch-btn">Whiskを体験する</a>
+        </section>
+        <section class="elearning-nav">
+            <a class="nav-btn" href="Palette2-3.html">&laquo; 前のページ</a>
+            <span></span>
+        </section>
+    </div>
+</body>
+</html> 
