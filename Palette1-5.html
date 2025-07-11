@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-5 対話ベースのプロンプト(日常使い) | ChatGPT講座</title>
+    <style>
+        .elearning-container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 32px 24px 24px 24px; }
+        .elearning-header { text-align: center; margin-bottom: 18px; }
+        .elearning-title { font-size: 2.2rem; font-weight: 800; color: #3a2e6c; letter-spacing: 0.02em; }
+        .elearning-narration { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 24px; }
+        .elearning-video { margin-bottom: 32px; }
+        .video-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+        .elearning-content { margin-bottom: 32px; }
+        .elearning-prompt { margin-bottom: 32px; }
+        .prompt-box {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .prompt-label { font-weight: 600; margin-bottom: 8px; color: #7b2ff2; }
+        .prompt-textarea { width: 100%; min-height: 60px; font-size: 1rem; border: none; background: #f7fafc; resize: none; margin-bottom: 10px; border-radius: 8px; padding: 8px; }
+        .copy-btn {
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        .elearning-nav { display: flex; justify-content: space-between; margin-bottom: 32px; }
+        .nav-btn { background: #ece9f7; color: #7b2ff2; border-radius: 8px; padding: 10px 22px; font-weight: 700; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(123,47,242,0.08); transition: background 0.2s, color 0.2s; }
+        .nav-btn:hover { background: #7b2ff2; color: #fff; }
+        .elearning-launch { text-align: center; }
+        .launch-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 24px;
+            padding: 14px 36px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transition: background 0.2s;
+        }
+        .launch-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        @media (max-width: 600px) { .elearning-container { padding: 10px 2vw; } .elearning-title { font-size: 1.3rem; } .video-frame iframe { height: 200px; } }
+    </style>
+</head>
+<body>
+    <div class="elearning-container">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb" style="margin-bottom: 18px; font-size: 0.98em;">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette1.html">Palette1</a> &gt; 
+            <span>Palette1-5</span>
+        </nav>
+        <header class="elearning-header">
+            <h1 class="elearning-title">1-5 対話ベースのプロンプト(日常使い)</h1>
+        </header>
+        <section class="elearning-narration">
+            <p>ChatGPTを安全かつ効果的に使うための基本的な注意点を学びましょう。</p>
+        </section>
+        <section class="elearning-video">
+            <div class="video-frame">
+                <iframe width="100%" height="360" src="https://www.youtube.com/embed/動画IDをここに" title="1-1 注意点解説動画" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section class="elearning-content">
+<pre style="white-space:pre-wrap;font-family:inherit;">
+
+📖 解説（）
+プロンプトとは、ChatGPTに伝える**「指示文」や「質問文」**のことです。
+このセクションでは、毎日の生活や仕事の中で自然に使える「対話ベースのプロンプト活用法」を学びます。
+________________
+
+
+💬 ゼロショットプロンプトとは？
+ゼロショットプロンプトとは、事前の文脈なしで突然質問を投げかける形式のことです。
+たとえば以下のような使い方が該当します：
+🗣️ 例）
+「明日の福岡の天気を教えて」
+「糖質制限中でも食べられるレシピを3つ教えて」
+このように、“前提なし”で質問してもChatGPTは適切に答えてくれます。
+📌ポイント：
+                           * 難しく考えず、まずは話しかけるように入力するのがコツです。
+
+                           * 必要に応じて追加の質問で情報を深めていきましょう。
+
+
+対話を繰り返すことで精度が高い回答を得るのが基本的な使い方です。
+________________
+
+
+🎙️ 音声入力での活用（スマホアプリ対応）
+ChatGPTは、音声入力がとても便利です。
+移動中や作業中でも、声だけで質問・対話ができるため、活用の幅が広がります。✅ 活用シーン：
+                              * 散歩しながらアイデア出し
+
+                              * 車移動中に思いついた質問
+                              * 大量の情報を話す
+
+🔍 補足：
+                                 * 滑舌に自信がなくてもOK！小さな声でもしっかり認識します。
+
+                                 * 誤字や聞き間違いも、AIが文脈で理解し補正してくれます。
+
+________________
+
+
+🧠 脳トレと同じ！？プロンプト練習の効果
+プロンプト入力は「スポーツ」と似ています。反復練習で、脳の新しい回路をつくることができるのです。
+🎯効果的な練習法：
+                                    * 毎日「朝の質問タイム」や「夜の振り返り」で定期的に使う
+
+                                    * 質問→再質問→深掘りの流れを繰り返す
+
+                                    * 書きながら考える「書く瞑想」にも◎
+
+________________
+
+
+💡まとめ
+項目
+	ポイント
+	ゼロショット
+	文脈なしでも自然に質問できる
+	音声入力
+	散歩中・移動中にも活用できる便利な機能
+	脳トレとしての活用
+	継続することで発想力・質問力が鍛えられる
+	
+
+________________</pre>
+</section>
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>ChatGPTを使う際の注意点をまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.prompt-textarea').value)">コピー</button>
+            </div>
+        </section>
+        <section class="elearning-launch">
+            <a href="https://chat.openai.com/" target="_blank" class="launch-btn">ChatGPTを起動する</a>
+        <section class="elearning-nav">
+<a class="nav-btn" href="Palette1-4.html">&laquo; 前のページ</a>
+<a class="nav-btn" href="Palette1-6.html">次のページ &raquo;</a>
+</section>
+</div>
+</body>
+</html> 

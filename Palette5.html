@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース5: NotebookLM（RAG的AI） | AIマスター講座</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .video-section {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f7fafc;
+            border-radius: 15px;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .subsection-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .content-text {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .navigation {
+            margin-bottom: 30px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 12px 15px;
+            background: #f7fafc;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .main-content, .sidebar {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="course-header">
+                <img src="../assets/images/アイコン/Notebook LM.png" alt="NotebookLM" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; border-radius: 16px; margin-right: 16px;">
+                <div>
+                    <h1 class="course-title">コース5: NotebookLM（RAG的AI）</h1>
+                    <p class="course-subtitle">自分専用の情報ベースを構築できるRAG系AI</p>
+                </div>
+            </div>
+            <p class="course-description">
+                NotebookLMは、自分専用の情報ベースを構築できるRAG系AIです。
+                マニュアル作成やナレッジ共有、マーケ戦略の設計まで、"自社の知をAI化する"方法を学びます。
+                必要な情報を保管しておき、必要な情報を引き出したり応用できるシステムを構築しましょう。
+            </p>
+        </div>
+
+        <div class="video-section">
+            <div class="video-placeholder">
+                <span>YouTube動画の埋め込みスペース</span>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">📚 学習内容</h2>
+                    
+                    <div class="subsection">
+                        <h3 class="subsection-title">5-1 NotebookLMによる知識ベース構築＆応用</h3>
+                        <p class="content-text">
+                            NotebookLMを活用して、自分専用の知識ベースを構築する方法を学びます。
+                            必要な情報を体系的に整理し、効率的に引き出して活用できるシステムを作成しましょう。
+                        </p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">必要な情報を保管しておく</h3>
+                        <p class="content-text">
+                            重要な情報や資料をNotebookLMに保管し、いつでもアクセスできる状態にする方法を学びます。
+                            ドキュメントのアップロード、整理方法、検索機能の活用について詳しく解説します。
+                        </p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">必要な情報を引き出したり応用できる</h3>
+                        <p class="content-text">
+                            保管した情報を効率的に引き出し、実際の業務やプロジェクトに応用する方法を学びます。
+                            検索機能、関連情報の自動提示、知識の組み合わせによる新しい洞察の創出について解説します。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">💡 主要な特徴</h2>
+                    <ul class="feature-list">
+                        <li>📚 自分専用の知識ベースを構築可能</li>
+                        <li>🔍 効率的な情報検索と引き出し</li>
+                        <li>📝 マニュアル作成の自動化</li>
+                        <li>🤝 ナレッジ共有の効率化</li>
+                        <li>📊 マーケティング戦略の設計支援</li>
+                        <li>🔄 情報の応用と組み合わせ</li>
+                        <li>⚡ リアルタイムでの情報更新</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🚀 NotebookLMの最大の強み</h3>
+                    <p>NotebookLMは「自社の知をAI化する」という新しい概念を実現します。
+                    必要な情報を体系的に保管し、必要な時に効率的に引き出して応用できるシステムを構築することで、
+                    組織全体の知識活用効率を劇的に向上させることができます。</p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="navigation">
+                    <h3>📖 コース一覧</h3>
+                    <ul class="nav-list">
+                        <li><a href="course1.html">1. ChatGPT</a></li>
+                        <li><a href="course2.html">2. Gemini</a></li>
+                        <li><a href="course3.html">3. Claude</a></li>
+                        <li><a href="course4.html">4. Perplexity</a></li>
+                        <li><a href="course5.html">5. NotebookLM</a></li>
+                        <li><a href="course6.html">6. Gamma</a></li>
+                        <li><a href="course7.html">7. Canva</a></li>
+                        <li><a href="course8.html">8. Suno</a></li>
+                        <li><a href="course9.html">9. KlingAI</a></li>
+                        <li><a href="course10.html">10. ImageFX</a></li>
+                        <li><a href="course11.html">11. AIエージェント</a></li>
+                        <li><a href="course12.html">12. 書籍制作</a></li>
+                        <li><a href="course13.html">13. 動画制作</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🎯 学習目標</h3>
+                    <p>NotebookLMを活用して、効率的な知識ベースを構築し、情報の活用と応用を実現するスキルを習得します。</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>⏱️ 学習時間</h3>
+                    <p>約1-2時間で基本から応用までマスターできます。</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📈 習得スキル</h3>
+                    <p>知識ベース構築、情報管理、RAG活用、ナレッジ共有</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="Palette.html" class="back-button">🏠 メインページに戻る</a>
+        </div>
+    </div>
+</body>
+</html>

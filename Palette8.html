@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース8: Suno AI（音楽生成） | AIマスター講座</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .video-section {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f7fafc;
+            border-radius: 15px;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .subsection-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .content-text {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            margin-bottom: 30px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 12px 15px;
+            background: #f7fafc;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .main-content, .sidebar {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="course-header">
+                <img src="../assets/images/アイコン/suno-ai-icon.png" alt="Suno" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; border-radius: 16px; margin-right: 16px;">
+                <div>
+                    <h1 class="course-title">コース8: Suno（音楽生成AI）</h1>
+                    <p class="course-subtitle">テキストから音楽を生成する革新的なAIツール</p>
+                </div>
+            </div>
+            <p class="course-description">
+                Sunoは、テキストの指示から音楽を自動生成できるAIツールです。
+                このチャプターでは、音楽制作から、BGM作成まで、Sunoの活用方法を学びます。
+            </p>
+        </div>
+
+        <div class="video-section">
+            <div class="video-placeholder">
+                <span>YouTube動画の埋め込みスペース</span>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">📚 コース内容</h2>
+                    
+                    <div class="subsection">
+                        <h3 class="subsection-title">8-1 Suno AIの主な特徴</h3>
+                        <p class="content-text">
+                            Suno AIは、テキストベースの指示から高品質な音楽を自動生成できるAIツールです。
+                            従来の音楽制作では専門知識や高価な機材が必要でしたが、Suno AIを使えば誰でも簡単にオリジナル音楽を作成できます。
+                        </p>
+                        <div class="highlight-box">
+                            <h4>主な特徴：</h4>
+                            <ul class="feature-list">
+                                <li>日本語OK - 「ゆったりしたカフェ風BGM」などでもしっかり認識される</li>
+                                <li>歌詞つき音楽も生成可 - 歌入りの楽曲も作れる（英語／多言語対応）</li>
+                                <li>ジャンルや雰囲気の指定 - ロック、ポップ、チル、クラシック風など多様に対応</li>
+                                <li>無料でも使える範囲あり - 月数曲までは無料。商用利用は利用規約を要確認</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">8-2 使い方の例</h3>
+                        <p class="content-text">
+                            Suno AIの具体的な活用例をご紹介します。
+                        </p>
+                        <div class="highlight-box">
+                            <h4>使い方の例：</h4>
+                            <ul class="feature-list">
+                                <li>「夜に合う、落ち着いたピアノジャズを作って」→ Sunoが30秒〜2分程度の高品質BGMを自動生成してくれます！</li>
+                                <li>「元気な応援ソング、女性ボーカル入りで」→ 歌入り・構成付きの楽曲が誕生！</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">8-3 活用シーン</h3>
+                        <p class="content-text">
+                            Suno AIの特徴を活かした具体的な活用シーンをご紹介します。
+                        </p>
+                        <div class="highlight-box">
+                            <h4>活用シーン：</h4>
+                            <ul class="feature-list">
+                                <li>作業中の集中用BGM - 自分だけの「集中モードトラック」を作成できます</li>
+                                <li>動画・Vlog・PR映像 - YouTube・Instagram・広告に最適な挿入音源に</li>
+                                <li>プレゼンやイベント音響 - シーンに合わせた効果音・雰囲気作りに◎</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">8-4 効率よく活用するコツ</h3>
+                        <p class="content-text">
+                            Suno AIをより効果的に活用するためのテクニックを学びます。
+                        </p>
+                        <div class="highlight-box">
+                            <h4>効率よく活用するコツ：</h4>
+                            <ul class="feature-list">
+                                <li>ChatGPTに「Suno用のプロンプトを考えて」と頼むと、最適な構成で指示文が出てきます！</li>
+                                <li>例：「陽気なアコースティックポップ、晴れた朝のようなイメージ、ギター中心で」→ こうした構成で入力すると、かなり狙った雰囲気の楽曲が作れます。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">8-5 まとめ</h3>
+                        <p class="content-text">
+                            Suno AIの活用ポイントをまとめます。
+                        </p>
+                        <div class="highlight-box">
+                            <h4>まとめ：</h4>
+                            <ul class="feature-list">
+                                <li>BGM自動生成 - 雰囲気・シーンに合った音楽を文章で作れる</li>
+                                <li>歌入り楽曲対応 - ナレーション動画やCM風コンテンツにも対応可能</li>
+                                <li>コラボ効率化 - ChatGPT × Sunoで、プロンプト作成から一気通貫で実行可</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="navigation">
+                    <h3>📋 コース一覧</h3>
+                    <ul class="nav-list">
+                        <li><a href="course1.html">1. ChatGPT</a></li>
+                        <li><a href="course2.html">2. Gemini</a></li>
+                        <li><a href="course3.html">3. Claude</a></li>
+                        <li><a href="course4.html">4. Perplexity</a></li>
+                        <li><a href="course5.html">5. NotebookLM</a></li>
+                        <li><a href="course6.html">6. Gamma</a></li>
+                        <li><a href="course7.html">7. Canva</a></li>
+                        <li><a href="course8.html">8. Suno</a></li>
+                        <li><a href="course9.html">9. KlingAI</a></li>
+                        <li><a href="course10.html">10. ImageFX</a></li>
+                        <li><a href="course11.html">11. AIエージェント</a></li>
+                        <li><a href="course12.html">12. 書籍制作</a></li>
+                        <li><a href="course13.html">13. 動画制作</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="Palette.html" class="back-button">🏠 メインページに戻る</a>
+        </div>
+    </div>
+</body>
+</html>

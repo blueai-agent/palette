@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-6 成果物を作るプロンプト | ChatGPT講座</title>
+    <style>
+
+        .elearning-container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 32px 24px 24px 24px; }
+        .elearning-header { text-align: center; margin-bottom: 18px; }
+        .elearning-title { font-size: 2.2rem; font-weight: 800; color: #3a2e6c; letter-spacing: 0.02em; }
+        .elearning-narration { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 24px; }
+        .elearning-video { margin-bottom: 32px; }
+        .video-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+        .elearning-content { margin-bottom: 32px; }
+        .elearning-prompt { margin-bottom: 32px; }
+        .prompt-box {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #00c3ff, #7b2ff2, #f953c6, #ff8c00) 1;
+            border-radius: 14px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .prompt-label { font-weight: 600; margin-bottom: 8px; color: #7b2ff2; }
+        .prompt-textarea { width: 100%; min-height: 60px; font-size: 1rem; border: none; background: #f7fafc; resize: none; margin-bottom: 10px; border-radius: 8px; padding: 8px; }
+        .copy-btn {
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        .elearning-nav { display: flex; justify-content: space-between; margin-bottom: 32px; }
+        .nav-btn { background: #ece9f7; color: #7b2ff2; border-radius: 8px; padding: 10px 22px; font-weight: 700; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(123,47,242,0.08); transition: background 0.2s, color 0.2s; }
+        .nav-btn:hover { background: #7b2ff2; color: #fff; }
+        .elearning-launch { text-align: center; }
+        .launch-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00c3ff, #007bff);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 24px;
+            padding: 14px 36px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transition: background 0.2s;
+        }
+        .launch-btn:hover {
+            background: linear-gradient(90deg, #007bff, #005fa3);
+            filter: none;
+        }
+        @media (max-width: 600px) { .elearning-container { padding: 10px 2vw; } .elearning-title { font-size: 1.3rem; } .video-frame iframe { height: 200px; } }
+    
+</style>
+</head>
+<body>
+    <div class="elearning-container">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb" style="margin-bottom: 18px; font-size: 0.98em;">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette1.html">Palette1</a> &gt; 
+            <span>Palette1-6</span>
+        </nav>
+        <header class="elearning-header">
+            <h1 class="elearning-title">1-6 成果物を作るプロンプト</h1>
+        </header>
+        <section class="elearning-narration">
+            <p>ChatGPTを安全かつ効果的に使うための基本的な注意点を学びましょう。</p>
+        </section>
+        <section class="elearning-video">
+            <div class="video-frame">
+                <iframe width="100%" height="360" src="https://www.youtube.com/embed/動画IDをここに" title="1-1 注意点解説動画" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section class="elearning-content">
+<pre style="white-space:pre-wrap;font-family:inherit;">〜狙ったアウトプットを引き出すための「フレームワーク活用」〜
+________________
+
+
+📖 解説（）
+日常の会話だけでなく、何かの成果物（例：企画書・ブログ記事・提案資料など）を作る場面では、
+より明確な「プロンプトの設計」が求められます。
+このセクションでは、成果物を効率よく作成するための「フレームワーク思考」と、AIへの指示の出し方を学びましょう。
+________________
+
+
+🧱 成果物プロンプトの4構造
+ChatGPTに的確なアウトプットを出してもらうには、以下のような要素を意識したプロンプトが効果的です：
+________________
+
+
+🎭 ステップ1：役割を設定する
+AIに「誰として振る舞ってほしいか」を明示すると、出力のクオリティが高まります。
+📌例：
+                                       * あなたはマーケターです
+
+                                       * あなたは大学教授です
+
+                                       * あなたパーソナルトレーナーです
+
+________________
+
+
+🎯 ステップ2：目的を明確に伝える
+ChatGPTに「何のためにその成果物を作りたいのか」を具体的に伝えましょう。
+📌例：
+                                          * 商品を紹介するランディングページを作成したい
+
+                                          * ブログで専門知識を発信したい
+
+                                          * プレゼンの構成を考えてほしい
+
+📋 ステップ3：参考情報＆出力形式を指定する
+出力の精度を高めるために、参考資料・を具体的に示しましょう。
+
+
+
+ステップ4：出力形式を指定する
+ファイル形式やトーン、テンプレート形式などを具体的に示しましょう。
+📌例：
+                                             * 文章スタイル（例：note記事風）
+
+                                             * 出力形式：表・箇条書き・Markdown
+
+文字数や見出し構成
+
+テンプレート
+役割 あなたはchatGPTの講師です
+目的 AIのプロンプトの効果的な活用方法が知りたい
+参考情報 私は初心者で言葉を全然知りません。
+出力形式 専門用語は避けて会話形式でフレンドリーに教えて下さい
+
+
+
+________________
+
+
+________________
+
+
+🛠️ 最強のプロンプト AIに「質問をもらう」活用法
+AIに「どんな情報が必要か教えて」と先に投げると、こちらの準備不足を補ってくれることがあります。
+🗣️ 例：
+「このテーマで記事を書きたいですが、必要な情報を質問してください」
+→ AIが要点を整理し、自然な流れでプロンプトが進行します。
+
+質問をもらうことは最高のプロンプトになります。必ずマスターしましょう。
+________________
+
+
+💡まとめ
+要素
+	内容例
+	目的
+	何を作りたいか？（例：記事、資料、コードなど）
+	役割
+	AIにどんな専門家として対応してほしいか
+	参考情報
+	スタイル、形式、元データなど
+	出力形式
+	表？箇条書き？構成テンプレート？
+	
+
+________________</pre>
+</section>
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>ChatGPTを使う際の注意点をまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.prompt-textarea').value)">コピー</button>
+            </div>
+        </section>
+        <section class="elearning-launch">
+            <a href="https://chat.openai.com/" target="_blank" class="launch-btn">ChatGPTを起動する</a>
+        </section>
+    </div>
+</body>
+</html> 

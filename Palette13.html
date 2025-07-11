@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コース13: 動画コンテンツ制作ワークフロー - AIマスター講座</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .course-subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .course-description {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            font-size: 1em;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .tool-purpose {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            font-weight: 500;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-main {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-to-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #e17055;
+        }
+
+        .highlight-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="../assets/images/アイコン/veo3 .webp" alt="動画コンテンツ制作ワークフロー" class="course-icon" style="width: 64px; height: 64px; object-fit: contain; border-radius: 16px; margin-right: 16px;">
+            <h1 class="course-title">コース13: 動画コンテンツ制作ワークフロー</h1>
+            <p class="course-subtitle">構成・台本・映像・音声・編集までAIで一気通貫！</p>
+            <p class="course-description">
+                複数のAIツールを組み合わせて、一本の動画コンテンツをゼロから完成させるワークフローを学びます。
+                教育系YouTube、SNSリール、広告動画など、発信したい人すべてに有効な実践型モデルです。
+            </p>
+        </div>
+
+        <div class="video-section">
+            <div class="video-placeholder">
+                <span>YouTube動画の埋め込みスペース</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">🎬 制作フロー：7つのステップ</h2>
+            <div class="workflow-steps">
+                <div class="step-card">
+                    <div class="step-number">①</div>
+                    <div class="step-title">構成・台本：ChatGPT</div>
+                    <div class="step-description">
+                        テーマ・ターゲットに合わせた構成を作成し、「構成＋セリフ（台本）」を対話で生成。
+                        トンマナ（トーン＆マナー）も指定可能。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">②</div>
+                    <div class="step-title">スライド：Gamma／Canva</div>
+                    <div class="step-description">
+                        構成内容をもとに、Gammaでスライドを自動生成。
+                        または、Canva×CSVで大量のスライドを一括生成可能。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">③</div>
+                    <div class="step-title">セリフ音声：TTS系ツール</div>
+                    <div class="step-description">
+                        台本を読み上げる音声を自動で生成。
+                        ナレーター風・キャラクター風のボイス切り替えも可能。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">④</div>
+                    <div class="step-title">映像作成：Whisk＋D-ID</div>
+                    <div class="step-description">
+                        Whiskで「セリフ付き映像」を自動生成。
+                        D-IDでアバターが喋るスタイルも可能。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">⑤</div>
+                    <div class="step-title">BGM作成：Suno</div>
+                    <div class="step-description">
+                        シーンに合わせたオリジナルBGMを自動生成。
+                        「感動系」「元気系」「集中系」など、テーマに合わせて指定。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">⑥</div>
+                    <div class="step-title">編集：CapCut</div>
+                    <div class="step-description">
+                        音声・映像・スライド・BGMを組み合わせて編集。
+                        自動字幕挿入・効果音・カット編集も一気にできる。
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">⑦</div>
+                    <div class="step-title">画像・素材：ImageFX</div>
+                    <div class="step-description">
+                        スライドやサムネ用画像はImageFXで生成。
+                        足りない素材はGoogle画像検索で補完。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">🛠️ 使用AIツール一覧</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-name">ChatGPT</div>
+                    <div class="tool-purpose">構成・台本作成</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">Gamma／Canva</div>
+                    <div class="tool-purpose">スライド生成</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">Whisper／ElevenLabs</div>
+                    <div class="tool-purpose">音声生成</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">Whisk／D-ID</div>
+                    <div class="tool-purpose">映像作成</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">Suno</div>
+                    <div class="tool-purpose">BGM作成</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">CapCut</div>
+                    <div class="tool-purpose">動画編集</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">ImageFX</div>
+                    <div class="tool-purpose">画像生成</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">💡 主要な特徴</h2>
+            <ul class="feature-list">
+                <li>🎯 一人で企画から完成まで全ての動画制作を完結</li>
+                <li>⚡ 各工程でAIが得意な役割を果たして効率化</li>
+                <li>🎨 教育系YouTube、SNSリール、広告動画に対応</li>
+                <li>🔧 直感的な操作で初心者でも高品質な動画制作</li>
+                <li>📱 スマホでもPCでも編集可能</li>
+                <li>🎵 オリジナルBGMで著作権問題を回避</li>
+                <li>🎬 自動字幕挿入でアクセシビリティ向上</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">🚀 このワークフローの最大の強み</div>
+            <p>それぞれの工程でAIが得意な役割を果たしてくれるのが最大の強みです。
+            一人で"企画から完成まで"全ての動画制作を完結でき、効率的かつ高品質なコンテンツ制作が可能になります。</p>
+        </div>
+
+        <div class="navigation">
+            <a href="course12.html" class="nav-button">← コース12: 書籍制作</a>
+            <a href="Palette.html" class="nav-button">メインページへ</a>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="Palette.html" class="back-to-main">🏠 メインページに戻る</a>
+        </div>
+    </div>
+</body>
+</html> 

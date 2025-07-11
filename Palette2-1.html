@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-1 Geminiの基本と組み合わせ活用 | Gemini講座</title>
+    <style>
+        :root {
+            --background-color: #f5f5f7;
+            --container-background: #ffffff;
+            --primary-text-color: #1d1d1f;
+            --secondary-text-color: #6e6e73;
+            --accent-color: #007aff;
+            --separator-color: #e5e5e5;
+            --button-background: #007aff;
+            --button-text-color: #ffffff;
+            --secondary-button-background: #e9e9eb;
+            --secondary-button-text-color: #1d1d1f;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .elearning-container {
+            max-width: 840px;
+            margin: 40px auto;
+            background: var(--container-background);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+        }
+        .breadcrumb a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+
+        .elearning-header {
+            text-align: center;
+        }
+        .elearning-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+        .elearning-narration {
+            font-size: 1.2rem;
+            color: var(--secondary-text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .elearning-video {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .elearning-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-text-color);
+            font-size: 1.2rem;
+        }
+
+        .elearning-content .subsection-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--separator-color);
+            padding-bottom: 12px;
+        }
+        .elearning-content .content-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            white-space: pre-wrap;
+        }
+
+        .prompt-box {
+            background: var(--background-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .prompt-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-text-color);
+        }
+        .prompt-textarea {
+            width: 100%;
+            min-height: 80px;
+            font-size: 1rem;
+            font-family: "Menlo", "Monaco", monospace;
+            border: 1px solid var(--separator-color);
+            background: var(--container-background);
+            resize: vertical;
+            border-radius: 12px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+        .copy-btn {
+            align-self: flex-end;
+            background: var(--secondary-button-background);
+            color: var(--secondary-button-text-color);
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #dcdce1;
+        }
+
+        .elearning-launch {
+            text-align: center;
+        }
+        .launch-btn {
+            display: inline-block;
+            background: var(--button-background);
+            color: var(--button-text-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 100px;
+            padding: 16px 36px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+        }
+        .launch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .elearning-nav {
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid var(--separator-color);
+            padding-top: 24px;
+        }
+        .nav-btn {
+            background: var(--secondary-button-background);
+            color: var(--secondary-button-text-color);
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: #dcdce1;
+        }
+
+        @media (max-width: 768px) {
+            .elearning-container {
+                padding: 24px;
+                gap: 32px;
+            }
+            .elearning-title {
+                font-size: 2.2rem;
+            }
+            .elearning-narration {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elearning-container">
+        <nav class="breadcrumb">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette2.html">Palette2</a> &gt; 
+            <span>Palette2-1</span>
+        </nav>
+
+        <header class="elearning-header">
+            <h1 class="elearning-title">2-1 Geminiの基本と組み合わせ活用</h1>
+            <p class="elearning-narration">Geminiの特徴と、他AIやGoogleサービスと組み合わせるメリットを学びましょう。</p>
+        </header>
+
+        <section class="elearning-video">
+            <!-- YouTubeの動画埋め込みコードをここに貼り付けます -->
+            <!-- 例: <iframe src="https://www.youtube.com/embed/your-video-id" ...></iframe> -->
+            <div class="video-placeholder">
+                <span>YouTube動画の埋め込みスペース</span>
+            </div>
+        </section>
+
+        <section class="elearning-content">
+            <div class="subsection">
+                <h3 class="subsection-title">コース概要</h3>
+                <p class="content-text">
+コース 2：Geminiの使い方と注意点
+〜組み合わせてこそ真価を発揮する〜
+
+🎙️セリフ：
+「ここではGoogleの生成AI『Gemini』の特徴と使い方を学びます。
+単体での活用ではなく、ChatGPTやClaudeと組み合わせることで真の力を発揮します。
+業務効率化の実例や、映像生成まで幅広くご紹介します。」
+                </p>
+            </div>
+            <div class="subsection">
+                <h3 class="subsection-title">📖 解説</h3>
+                <p class="content-text">
+Googleが提供する生成AI「Gemini」は非常に高性能です。Geminiは、Googleの他サービスと組み合わせてタスクの効率化がおすすめです。
+                </p>
+            </div>
+            <div class="subsection">
+                <h3 class="subsection-title">🔁 組み合わせ活用のメリット</h3>
+                <p class="content-text">
+<b>組み合わせ例</b>
+Gemini × Gmail返信: 簡単にメール本文を作成できる。
+Gemini × カレンダー: メールなどをそのまま予定に入れることができる。
+                </p>
+            </div>
+        </section>
+
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>Geminiの活用メリットをまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.value)">コピー</button>
+            </div>
+        </section>
+
+        <section class="elearning-launch">
+            <a href="https://gemini.google.com/" target="_blank" class="launch-btn">Geminiを起動する</a>
+        </section>
+
+        <nav class="elearning-nav">
+            <a class="nav-btn" href="Palette2-2.html">次のページ &raquo;</a>
+        </nav>
+    </div>
+</body>
+</html>

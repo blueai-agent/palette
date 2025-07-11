@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-1 はじめに知っておくべき注意点 | ChatGPT講座</title>
+    <style>
+        :root {
+            --background-color: #f5f5f7;
+            --container-background: #ffffff;
+            --primary-text-color: #1d1d1f;
+            --secondary-text-color: #6e6e73;
+            --accent-color: #007aff;
+            --separator-color: #e5e5e5;
+            --button-background: #007aff;
+            --button-text-color: #ffffff;
+            --secondary-button-background: #e9e9eb;
+            --secondary-button-text-color: #1d1d1f;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .elearning-container {
+            max-width: 840px;
+            margin: 40px auto;
+            background: var(--container-background);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+        }
+        .breadcrumb a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+
+        .elearning-header {
+            text-align: center;
+        }
+        .elearning-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+        .elearning-narration {
+            font-size: 1.2rem;
+            color: var(--secondary-text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .elearning-video {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .elearning-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .elearning-content .subsection-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--separator-color);
+            padding-bottom: 12px;
+        }
+        .elearning-content .content-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            white-space: pre-wrap;
+        }
+
+        .prompt-box {
+            background: var(--background-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .prompt-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-text-color);
+        }
+        .prompt-textarea {
+            width: 100%;
+            min-height: 80px;
+            font-size: 1rem;
+            font-family: "Menlo", "Monaco", monospace;
+            border: 1px solid var(--separator-color);
+            background: var(--container-background);
+            resize: vertical;
+            border-radius: 12px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+        .copy-btn {
+            align-self: flex-end;
+            background: var(--secondary-button-background);
+            color: var(--secondary-button-text-color);
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #dcdce1;
+        }
+
+        .elearning-launch {
+            text-align: center;
+        }
+        .launch-btn {
+            display: inline-block;
+            background: var(--button-background);
+            color: var(--button-text-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 100px;
+            padding: 16px 36px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+        }
+        .launch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .elearning-nav {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--separator-color);
+            padding-top: 24px;
+        }
+        .nav-btn {
+            background: var(--secondary-button-background);
+            color: var(--secondary-button-text-color);
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: #dcdce1;
+        }
+
+        @media (max-width: 768px) {
+            .elearning-container {
+                padding: 24px;
+                gap: 32px;
+            }
+            .elearning-title {
+                font-size: 2.2rem;
+            }
+            .elearning-narration {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elearning-container">
+        <nav class="breadcrumb">
+            <a href="Palette.html">ホーム画面</a> &gt; 
+            <a href="Palette1.html">Palette1</a> &gt; 
+            <span>Palette1-1</span>
+        </nav>
+
+        <header class="elearning-header">
+            <h1 class="elearning-title">1-1 はじめに知っておくべき注意点</h1>
+            <p class="elearning-narration">ChatGPTを安全かつ効果的に使うための基本的な注意点を学びましょう。</p>
+        </header>
+
+        <section class="elearning-video">
+             <iframe width="100%" height="360" src="https://www.youtube.com/embed/動画IDをここに" title="1-1 注意点解説動画" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+        <section class="elearning-content">
+            <div class="subsection">
+                <h3 class="subsection-title">はじめに知っておくべき注意点</h3>
+                <p class="content-text">
+ChatGPTを使用する際の基本的な注意点と、安全で効果的な活用方法について学びます。プライバシー、データ保護、適切な使用方法を理解しましょう。
+
+<b>① ハルシネーション（虚偽情報）</b>
+AIは、まるで本当のように「存在しない情報」を生成してしまうことがあります。これをハルシネーション（幻覚）と呼びます。
+例：存在しない書籍やURL、架空の専門用語など。
+✅ 対策：複数モデルでのクロスチェックや信頼できる出典の併用が有効です。
+
+<b>② 個人情報の扱いに注意</b>
+ChatGPTは会話を一時的に記憶するだけですが、念のため個人情報の入力は禁止とされています。
+例：銀行口座、暗証番号、顔写真など。
+
+<b>③ 過度な肯定反応</b>
+ChatGPTはユーザーの意図に賛同しやすく、誤った方向性でも肯定する傾向があります。
+例：「この情報で間違いないよね？」→間違っていても「はい」と返す可能性あり。
+🧠 批判的思考を保ちながら使用することが大切です。
+
+<b>④ 思考停止のリスク</b>
+AIに任せすぎると「考える力」が弱まる懸念も。特に子どもや若年層にとっては、使い方に大人のサポートが必要です。
+✅ 対策：AIの提案に対して、自分で評価し直す癖をつけましょう。
+
+<b>⑤ 依存性に注意</b>
+AIキャラクターとの恋愛チャットや、1日中AIと会話するような使い方は依存のリスクが指摘されています。
+🧘‍♀️ 適切な距離感を持って付き合う意識が大切です。
+
+<b>⑥ 新機能ばかり追わない</b>
+新しい機能は魅力的ですが、最も重要なのは基本の使い方を極めること。基礎ができてこそ、応用が活きてきます。
+                </p>
+            </div>
+        </section>
+
+        <section class="elearning-prompt">
+            <div class="prompt-box">
+                <div class="prompt-label">プロンプト例（コピーして使えます）</div>
+                <textarea class="prompt-textarea" readonly>ChatGPTを使う際の注意点をまとめてください。</textarea>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.value)">コピー</button>
+            </div>
+        </section>
+
+        <section class="elearning-launch">
+            <a href="https://chat.openai.com/" target="_blank" class="launch-btn">ChatGPTを起動する</a>
+        </section>
+
+        <nav class="elearning-nav">
+            <a class="nav-btn" href="Palette1-2.html">次のページ &raquo;</a>
+        </nav>
+    </div>
+</body>
+</html>
